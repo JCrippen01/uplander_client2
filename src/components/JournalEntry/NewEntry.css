@@ -1,0 +1,39 @@
+.add-entry{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+    margin-right: 1rem;
+}
+.add-entry span{
+    padding-top: .90rem;
+}
+.entry-container{
+    border: 2px solid black;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.entry-head{
+    display: flex;
+    justify-content: space-between;
+}
+.entry-body{
+    display: flex;
+    align-self: center;
+}
+.entry-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.entry-icons{
+    display: flex;
+    justify-content: space-evenly;
+}
+.entry-icons p {
+    border: 1px black dashed 60%;
+}
+.entry-icons span {
+    padding: .9rem;
+}
