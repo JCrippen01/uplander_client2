@@ -27,7 +27,7 @@ export const Login = () => {
             .then(res => {
                 if (res.valid) {
                     localStorage.setItem("journal_user_id", res.token )
-                    history.push("/")
+                    history.push("/myentrys")
                 }
                 else {
                     invalidDialog.current.showModal()

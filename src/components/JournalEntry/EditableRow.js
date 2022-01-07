@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState} from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { UpdateEntry } from "./EntryManager";
+
+
+
 
 const EditableRow = ({
+
   entry,  
   editFormData,
+  handleEditClick,
   handleEditFormChange,
   handleCancelClick,
 }) => {
-    
+const history =useHistory()
+
+const [EditData, SetEditData] =useState({
+  Location: entry.location,
+  Title: entry.title,
+  Date: entry.entry_date
+})
+  
   return (
     <tr>
       <td>
@@ -15,18 +29,30 @@ const EditableRow = ({
           required="required"
           placeholder="Enter a title..."
           name="title"
-          value={entry.title}
-          onChange={handleEditFormChange}
+          value={EditData.Title}
+          onChange= {(e) =>
+          {
+            let copy= {...EditData}
+            copy.Title = e.target.value
+            SetEditData(copy)
+          }
+          }
         ></input>
       </td>
       <td>
         <input
           type="text"
           required="required"
-          placeholder="Date"
+          placeholder="date"
           name="date"
-          value={entry.entry_date}
-          onChange={handleEditFormChange}
+          value={EditData.Date}
+          onChange= {(e) =>
+            {
+              let copy= {...EditData}
+              copy.Date = e.target.value
+              SetEditData(copy)
+            }
+            }
         ></input>
       </td>
       <td>
@@ -35,13 +61,23 @@ const EditableRow = ({
           required="required"
           placeholder="Enter Location..."
           name="location"
-          value={entry.location}
-          onChange={handleEditFormChange}
+          value={EditData.Location}
+          onChange= {(e) =>
+            {
+              let copy= {...EditData}
+              copy.Location = e.target.value
+              SetEditData(copy)
+            }
+            }
         ></input>
       </td>
       
       <td>
-        <button type="submit">Save</button>
+    
+                    <button className="button  " type="submit" onClick={()=>{
+                        UpdateEntry(entry.id).then(history.push("/myentry"))
+                    }}
+                    >Save Edits</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel
         </button>
@@ -50,4 +86,4 @@ const EditableRow = ({
   );
 };
 
-export default EditableRow;
+export default EditableRow

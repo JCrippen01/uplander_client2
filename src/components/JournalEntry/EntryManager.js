@@ -7,15 +7,18 @@ export const getEntrys = () => {
         .then(response => response.json())
         }
 
-export const CreateEntry = (entry) => {
+export const createEntry = (entry) => {
         return fetch("http://localhost:8000/entrys", {
+            method: "POST",
             headers:{
-                "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
-                }
+                "Authorization": `Token ${localStorage.getItem("journal_user_id")}`,
+                "Content-Type": "application/json"
+                },
+                body: JSON.stringify(entry)
              })
                 .then(response => response.json())
         }
-export const updatePost = (entry) => {
+export const UpdateEntry = (entry) => {
     return fetch(`http://localhost:8088/entrys/${entry.id}`, {
         method: "PUT",
         headers: {

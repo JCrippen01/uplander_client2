@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import "./JournalEntry.css"
+
 import { useHistory, useParams } from "react-router"
 import { EntryContext } from "./EntryProvider"
 export const EditEntry = () =>{
@@ -77,7 +77,7 @@ export const EditEntry = () =>{
                     
                 </fieldset>
                 </div>
-                    <button className="btn btn-1  " type="submit" onClick={()=>{
+                    <button className="button  " type="submit" onClick={()=>{
                         editEntry(entry.id, buildObject()).then(history.push("/myentry"))
                     }}
                     >Save Edits</button>

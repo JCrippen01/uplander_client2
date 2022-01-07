@@ -31,6 +31,7 @@ export const EntryProvider = (props) => {
         const fetchOption = {
             method: "POST",
             headers: {
+                "Authorization": `Token ${currentUser}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(object)

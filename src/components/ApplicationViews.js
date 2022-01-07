@@ -1,9 +1,9 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { MyEntryList } from "./JournalEntry/EntryList2"
+import { EntryList } from "./JournalEntry/EntryList"
 import { EditEntry } from "./JournalEntry/EditJournal"
 import { EntryProvider } from "./JournalEntry/EntryProvider"
-import { CreateJournal } from "./JournalEntry/CreateJournal"
+import { CreateEntry } from "./JournalEntry/CreateEntry"
 
 
 // import { SpeciesList } from "./species/SpeciesList"
@@ -20,11 +20,12 @@ export const ApplicationViews = () => {
             
         <EntryProvider>
             <Route exact path="/myentrys">
-                <MyEntryList />
-            <Route path="/createjournal">
-                <CreateJournal />
+                <EntryList />
             </Route>
+            <Route exact path="/createentry">
+                <CreateEntry />
             </Route>
+            
             <Route path="/editentry/:entryId(\d+)">
                 <EditEntry />
             </Route>

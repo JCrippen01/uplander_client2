@@ -1,7 +1,6 @@
 import React, { useEffect, useState  } from "react";
 import { useHistory } from "react-router";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom"
 import { getEntrys } from "./EntryManager.js";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
@@ -129,40 +128,62 @@ export const EntryList = (props) => {
     return ( 
         
         <div className="app-container">
-            <form onSubmit={handleEditFormSubmit}>
-            <table>
-                <thead>
-                    <h1>Your Journal Entrys</h1>
-                    <tr>
-                        <th>Title</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        
-                        {entrys.map((entry) => (
-                            <>
-                                {editEntryId === entry.id ? (
-                                    <EditableRow
-                                    entry={entry}
-                                    editFormData={editFormData}
-                                    handleEditFormChange={handleEditFormChange}
-                                    handleCancelClick={handleCancelClick}
-                                />
-                                ) : (
-                                    <ReadOnlyRow
-                                    entry={entry}
-                                    handleEditClick={handleEditClick}
-                                    handleDeleteClick={handleDeleteClick}
-                                />
-                                )}
-                            </>
-                        ))}
-                    </tbody>
-                </table>
-                <Link  to="/createentry"><button>Create Journal</button></Link>
+            {/*Add Entry */}
+                <h2>Add an Entry</h2>
+                <form onSubmit={handleAddFormSubmit}>
+                <input
+                    type="text"
+                    name="title"
+                    required="required"
+                    placeholder="Enter a Title..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="date"
+                    required="required"
+                    placeholder="Date..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="location"
+                    required="required"
+                    placeholder="Enter Location..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="duration"
+                    required="required"
+                    placeholder="How long were you in field..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="party"
+                    required="required"
+                    placeholder="Who did you go with?..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="gear"
+                    required="required"
+                    placeholder="What gear did you use?..."
+                    onChange={handleAddFormChange}
+                />
+                <input
+                    type="text"
+                    name="hunt_highlights"
+                    required="required"
+                    placeholder="Trips Highlights..."
+                    onChange={handleAddFormChange}
+                />
+                
+                <button className="button  " type="submit"
+                    
+                    >Submit</button>
             </form>
         </div>
     
@@ -172,7 +193,7 @@ export const EntryList = (props) => {
 
                 export default EntryList;
 
-                // <button className="button  " type="submit" onClick={() => {
+                // <button className="button " type="submit" onClick={() => {
                 //     createPost(buildObject()).then( history.push("/new_entrys"))
                 // }
                 // }>Submit</button>

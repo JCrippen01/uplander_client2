@@ -17,7 +17,7 @@ export const MyEntryList = () => {
     return(<>
         <div className="add-entry">
         <span>
-        <Link to="/createjournal"><button type="button">Create New Entry</button>                    
+        <Link to="/createentry"><button type="button">Create New Entry</button>                    
         </Link>
         </span>
         </div>
