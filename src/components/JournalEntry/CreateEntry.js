@@ -28,7 +28,7 @@ export const CreateEntry = () =>{
         }
     createEntry(PostEntry)
     .then(() => {
-        history.push("/createentry")
+        history.push("/myentrys")
     })
 
     }
@@ -36,25 +36,60 @@ export const CreateEntry = () =>{
         <section className="newEntry_form">
         <form className="" >
                 <h1 className="h3 mb-3 font-weight-normal">New Journal</h1>
+
                 <fieldset>
                     <label htmlFor="title"> Title </label>
-                    <input  type="text" name="title"  className="form-control" placeholder="Title" required autoFocus />
+                    <input 
+                        onChange = { (e) => { const copy = {...addFormData}
+                            copy.title = e.target.value
+                            setAddFormData(copy)
+                            }
+                        }    
+
+                    type="text" name="title"  className="form-control" placeholder="Title" required autoFocus />
                 </fieldset>
+
                 <fieldset>
                 <label htmlFor="party"> Who did you go with </label>
-                    <input type="text" name="party" className="form-control" placeholder="party" required />
+                    <input 
+                         onChange = { (e) => { const copy = {...addFormData}
+                         copy.party = e.target.value
+                         setAddFormData(copy)
+                         }
+                     }   
+                        type="text" name="party" className="form-control" placeholder="party" required />
                 </fieldset>
+                     
                 <fieldset>
                 <label htmlFor="location"> Where did you go</label>
-                    <input  type="text" name="location"  className="form-control" placeholder="location" required />
+                    <input
+                         onChange = { (e) => { const copy = {...addFormData}
+                         copy.location = e.target.value
+                         setAddFormData(copy)
+                         }
+                     }    
+                     type="text" name="location"  className="form-control" placeholder="location" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="gear"> Who did you go with </label>
-                    <input  type="text" name="gear"  className="form-control" placeholder="gear" required />
+                    <input
+                         onChange = { (e) => { const copy = {...addFormData}
+                         copy.gear = e.target.value
+                         setAddFormData(copy)
+                         }
+                     }    
+                     type="text" name="gear"  className="form-control" placeholder="gear" required />
                 </fieldset>
+                
                 <fieldset>
                     <label htmlFor="hunt_highlights">Trip Highlights </label>
-                    <input  type="text" name="hunt_highlights"  className="form-control" placeholder="hunt_highlights" required />
+                    <input  
+                         onChange = { (e) => { const copy = {...addFormData}
+                         copy.hunt_highlights = e.target.value
+                         setAddFormData(copy)
+                         }
+                     }   
+                    type="text" name="hunt_highlights"  className="form-control" placeholder="hunt_highlights" required />
                 </fieldset>
 
                 <fieldset style={{

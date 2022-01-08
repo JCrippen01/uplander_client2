@@ -18,13 +18,13 @@ export const createEntry = (entry) => {
              })
                 .then(response => response.json())
         }
-export const UpdateEntry = (entry) => {
+export const updateEntry = (entry, entryId) => {
     return fetch(`http://localhost:8088/entrys/${entry.id}`, {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
         },
         body: JSON.stringify(entry)
     })
 }
-
