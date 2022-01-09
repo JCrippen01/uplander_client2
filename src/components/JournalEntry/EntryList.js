@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { Link } from "react-router-dom"
 import { getEntrys } from "./EntryManager.js";
 import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import { EditEntry } from "./EditEntry";
 import "./EntryList.css";
 
 //write funtion that 1.does put request 2. does get request on entrys.
@@ -105,14 +105,17 @@ export const EntryList = (props) => {
         setEditEntryId(entry.id);
     
         const formValues = {
-            Title: addFormData.Title,
-            Date: addFormData.Date,
-            Location: addFormData.Location,
+            title: addFormData.title,
+            date: addFormData.date,
+            location: addFormData.location,
         };
         setEditFormData(formValues);
     };
     const handleCancelClick = () => {
         setEditEntryId(null);
+        
+        
+        
       };
     
       const handleDeleteClick = (entryId) => {
@@ -145,7 +148,7 @@ export const EntryList = (props) => {
                         {entrys.map((entry) => (
                             <>
                                 {editEntryId === entry.id ? (
-                                    <EditableRow
+                                    <EditEntry
                                     entry={entry}
                                     editFormData={editFormData}
                                     handleEditFormChange={handleEditFormChange}
@@ -162,7 +165,6 @@ export const EntryList = (props) => {
                         ))}
                     </tbody>
                 </table>
-                <Link  to="/createentry"><button>Create Journal</button></Link>
             </form>
         </div>
     

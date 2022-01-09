@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { EntryList } from "./JournalEntry/EntryList"
-import { EditEntry } from "./JournalEntry/EditJournal"
+import { EditEntry } from "./JournalEntry/EditEntry"
 import { EntryProvider } from "./JournalEntry/EntryProvider"
 import { CreateEntry } from "./JournalEntry/CreateEntry"
 
@@ -26,7 +26,7 @@ export const ApplicationViews = () => {
                 <CreateEntry />
             </Route>
             
-            <Route path="/editentry/:entryId(\d+)">
+            <Route exact path="/editentry/:entryId(\d+)">
                 <EditEntry />
             </Route>
         </EntryProvider>

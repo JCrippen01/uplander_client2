@@ -1,0 +1,21 @@
+
+
+section.newEntry__form {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+    padding: 1rem;
+    border: 5px solid black;
+    flex-basis: 80%;
+
+}
+.form-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+form {
+    display: flex;
+    gap: 5px;
+  }

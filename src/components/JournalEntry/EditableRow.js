@@ -16,9 +16,9 @@ const EditableRow = ({
 const history =useHistory()
 
 const [EditData, SetEditData] =useState({
-  Location: entry.location,
-  Title: entry.title,
-  Date: entry.entry_date
+  location: entry.location,
+  title: entry.title,
+  date: entry.entry_date
 })
   
   return (
@@ -29,11 +29,11 @@ const [EditData, SetEditData] =useState({
           required="required"
           placeholder="Enter a title..."
           name="title"
-          value={EditData.Title}
+          value={EditData.title}
           onChange= {(e) =>
           {
             let copy= {...EditData}
-            copy.Title = e.target.value
+            copy.title = e.target.value
             SetEditData(copy)
           }
           }
@@ -45,11 +45,11 @@ const [EditData, SetEditData] =useState({
           required="required"
           placeholder="date"
           name="date"
-          value={EditData.Date}
+          value={EditData.date}
           onChange= {(e) =>
             {
               let copy= {...EditData}
-              copy.Date = e.target.value
+              copy.date = e.target.value
               SetEditData(copy)
             }
             }
@@ -61,11 +61,11 @@ const [EditData, SetEditData] =useState({
           required="required"
           placeholder="Enter Location..."
           name="location"
-          value={EditData.Location}
+          value={EditData.location}
           onChange= {(e) =>
             {
               let copy= {...EditData}
-              copy.Location = e.target.value
+              copy.location = e.target.value
               SetEditData(copy)
             }
             }
