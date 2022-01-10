@@ -36,8 +36,8 @@ export const CreateEntry = () =>{
         <section className="newEntry_form">
         <form className="" >
                 <h1 className="h3 mb-3 font-weight-normal">New Journal</h1>
+
                 <fieldset>
-                
                     <label htmlFor="title"> Title </label>
                     <input 
                         onChange = { (e) => { const copy = {...addFormData}

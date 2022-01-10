@@ -1,5 +1,9 @@
 import React, { useState} from "react";
+<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
+=======
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+>>>>>>> e77f3e22869dc9393ef893582dc81c135296add7
 import { UpdateEntry } from "./EntryManager";
 
 
@@ -16,9 +20,15 @@ const EditableRow = ({
 const history =useHistory()
 
 const [EditData, SetEditData] =useState({
+<<<<<<< HEAD
   location: entry.location,
   title: entry.title,
   date: entry.entry_date
+=======
+  Location: entry.location,
+  Title: entry.title,
+  Date: entry.entry_date
+>>>>>>> e77f3e22869dc9393ef893582dc81c135296add7
 })
   
   return (
