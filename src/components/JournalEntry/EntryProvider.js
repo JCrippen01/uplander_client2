@@ -1,68 +1,60 @@
-
-import React,{ createContext, useState } from "react";
-const api = "http://localhost:8000"
-export const EntryContext = createContext()
-
-export const EntryProvider = (props) => {
-    const currentUser = localStorage.getItem("journal_user_id")
-    const [myEntrys, setMyEntry] = useState([])
-    const getEntry = (id) => {
-        return fetch(`${api}/entrys/${id}`, {
+export const getEntrys = () => {
+    return fetch("http://localhost:8000/entrys", {
         headers:{
-            "Authorization": `Token ${currentUser}`
-            }
-        })
-            .then(res => res.json())
-          
-          
-    }
-    const fetchMyEntry = () => {
-        return fetch(`${api}/entrys`, {
-            headers:{
-                "Authorization": `Token ${currentUser}`
-            }
-        })
-            .then(response => response.json())
-            .then((data) => {
-                setMyEntry(data)
-            })
-    }
-    const createEntry = (object) => {
-        const fetchOption = {
-            method: "POST",
-            headers: {
-                "Authorization": `Token ${currentUser}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(object)
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
         }
-        
-        return fetch(`${api}/entrys`, fetchOption)
-            
-    }
-    const deleteEntry = (id) =>{
-        return (fetch(`${api}/entrys/${id}`, {
+    })
+        .then(response => response.json())
+        }
+
+export const createEntry = (entry) => {
+        return fetch("http://localhost:8000/entrys", {
+            method: "POST",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("journal_user_id")}`,
+                "Content-Type": "application/json"
+                },
+                body: JSON.stringify(entry)
+             })
+                .then(response => response.json())
+        }
+export const updateEntry = (entry, id) => {
+    return fetch(`http://localhost:8000/entrys/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
+        },
+        body: JSON.stringify(entry)
+    })
+
+}
+
+export const getEntryId = (entryId) => {
+    return fetch(`http://localhost:8000/entrys/${entryId}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
+        }
+    })
+        .then(response => response.json())
+}
+export const deleteEntry = (id) => {
+    return fetch(`http://localhost:8000/entrys/${id}`, {
         method: "DELETE",
         headers: {
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`,
             "Content-Type": "application/json"
         },
-        body: null
-    }))
-    }
-    const editEntry = (id, object) => {
-        const dataToSend = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${currentUser}`
-                
-            },
-            body: JSON.stringify(object)
+    })
+}
+export const updateDogEntry = (id, dogId) => {
+    return fetch(`http://localhost:8000/entrys/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("journal_user_id")}`
+        },
+        body: JSON.stringify({dogs: dogId})
+    })
 
-        }
-        return fetch(`${api}/entrys/${id}`, dataToSend)
-    }
-    return (<EntryContext.Provider value={{
-        fetchMyEntry, myEntrys, createEntry, deleteEntry, getEntry, editEntry
-    }}>{props.children}</EntryContext.Provider>)
 }

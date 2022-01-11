@@ -1,11 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
 // import { EntryList } from "./JournalEntry/EntryList"
-import { EditEntry } from "./JournalEntry/EditEntry"
 import { EntryProvider } from "./JournalEntry/EntryProvider"
-import { CreateEntry } from "./JournalEntry/CreateEntry"
 import DogList from "./JournalEntry/DogList"
 import EntryList2 from "./JournalEntry/MyJournal"
+import OpenModal from "./JournalEntry/OpenModal"
 
 
 // import { SpeciesList } from "./species/SpeciesList"
@@ -20,20 +19,22 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             
-        <EntryProvider>
+            <Route exact path="/myentrys/dogs/:entryId(\d+)">
+                <OpenModal />
+            </Route>
+
             <Route exact path="/myentrys">
                 <EntryList2 />
             </Route>
-            <Route exact path="/createentry">
-                <CreateEntry />
-            </Route>
+           
             <Route exact path="/mydogs">
                 <DogList />
             </Route>
-            <Route exact path="/editentry/:entryId(\d+)">
-                <EditEntry />
-            </Route>
-        </EntryProvider>
+
+            {/* <Route exact path="/editentry/:entryId(\d+)">
+            <EditEntry />
+            </Route> */}
+  
            
            
         </main>

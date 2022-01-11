@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import { Select } from '@material-ui/core';
+import React, { useRef, useEffect, useCallback,useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
-import { MdClose } from 'react-icons/md';
+
 
 const Background = styled.div`
   width: 100%;
@@ -18,11 +19,12 @@ const ModalWrapper = styled.div`
   height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
-  color: #000;
+  color: #222;
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  z-index: 10;
+  z-index: 0;
+  overlay: {zIndex: 1000}
   border-radius: 10px;
 `;
 
@@ -51,18 +53,12 @@ const ModalContent = styled.div`
   }
 `;
 
-const CloseModalButton = styled(MdClose)`
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  z-index: 10;
-`;
+
 
 export const Modal = ({ showModal, setShowModal }) => {
+  const [dogs, setDogs] = useState([])
+ 
+  
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -76,6 +72,7 @@ export const Modal = ({ showModal, setShowModal }) => {
   const closeModal = e => {
     if (modalRef.current === e.target) {
       setShowModal(false);
+      
     }
   };
 
@@ -97,22 +94,30 @@ export const Modal = ({ showModal, setShowModal }) => {
     [keyPress]
   );
 
+   
+
+
+  
   return (
     <>
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ModalImg src={require('./modal.jpg')} alt='camera' />
               <ModalContent>
-                <h1>Add The dogs you took with you!</h1>
-                <p>Click and Save!</p>
+                <div className="inputBox"><h3>Add The dogs you took with you!</h3></div>
+                <div><select name="dogs" value={dogs.id} >
+                  <option value="0">Select Park</option>
+                  {
+                    dogs.map(dog => <option value={dog.id}>{dog.name}</option>)
+                  }
+
+                </select></div>
+               
                 <button>Save</button>
               </ModalContent>
-              <CloseModalButton
-                aria-label='Close modal'
-                onClick={() => setShowModal(prev => !prev)}
-              />
+              
+              
             </ModalWrapper>
           </animated.div>
         </Background>
